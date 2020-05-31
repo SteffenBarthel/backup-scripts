@@ -31,12 +31,12 @@ $path$backup_name \
 /
 
 # transfer backup
+# local backup will be deleted if the transfer was successful
 sshpass -p $ssh_password \
 scp -P $ssh_port \
 $path$backup_name \
-$ssh_user@$ssh_ip:$ssh_path
-
-# delete local backup
+$ssh_user@$ssh_ip:$ssh_path \
+&& \
 rm $path$backup_name
 
 echo 'Backup finished.'

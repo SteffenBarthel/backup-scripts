@@ -31,11 +31,10 @@ $path$backup_name \
 /
 
 # transfer backup
+# local backup will be deleted if the transfer was successful
 sshpass -p $ssh_password \
 rsync -avSAH \
 -e "ssh -p $ssh_port -o StrictHostKeyChecking=no" \
-$path$backup_name \
-$ssh_user@$ssh_ip:$ssh_path
-
-# delete local backup
+$path$backup_name $ssh_user@$ssh_ip:$ssh_path \
+&& \
 rm $path$backup_name
